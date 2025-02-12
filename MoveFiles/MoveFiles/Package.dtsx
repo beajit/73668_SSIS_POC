@@ -1,0 +1,136 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/27/2024 11:26:46 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-JUHJC1BN"
+  DTS:CreatorName="LAPTOP-JUHJC1BN\Ajit Kumar"
+  DTS:DTSID="{2FE33380-8B44-4634-9F19-8FCB87732CF9}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="16393"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{FFE69DD9-3728-4759-B116-831B49426932}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{10BE0AB8-5B88-4A9E-A8F8-0096F2617B8E}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::DestFolder]+&quot;\\&quot;+ RIGHT(  @[User::SourceFilePath] , FINDSTRING(REVERSE( @[User::SourceFilePath] ) , &quot;\\&quot;, 1) - 1)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DestFilePath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\Ajit Kumar\Documents\SQL Server Management Studio\MoveFolder\Error Folder\Email_Info.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AB06DF69-72B3-4D6E-BCC5-29B5ED0BC3F7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DestFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\Ajit Kumar\Documents\SQL Server Management Studio\MoveFolder\Error Folder</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0CEB5875-4C27-44FA-82B7-F7FF581C1A24}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceFilePath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\Ajit Kumar\Documents\SQL Server Management Studio\MoveFolder\Email_Info.csv</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{0D11B1EC-F064-4F84-85E0-D0C30FF23405}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{C9CCE8F8-569B-4330-842D-987798482B4D}"
+        DTS:ObjectName="{C9CCE8F8-569B-4330-842D-987798482B4D}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\Users\Ajit Kumar\Documents\SQL Server Management Studio\MoveFolder" />
+            <FEFEProperty
+              FileSpec="*.csv" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\File System Task"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{5D5228FD-5F5A-4AF8-BA47-8C56133BF1E3}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="File System Task"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="MoveFile"
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="User::SourceFilePath"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::DestFilePath"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{3F5E8029-7CF0-4B09-8363-938843DA1CEF}"
+          DTS:ObjectName="{3F5E8029-7CF0-4B09-8363-938843DA1CEF}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::SourceFilePath" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="156.8,41.6"
+          Id="Package\Foreach Loop Container\File System Task"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="204.8,102.4"
+          Size="204.8,145.6"
+          Id="Package\Foreach Loop Container"
+          TopLeft="408.57142944117,165.941176325134" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
